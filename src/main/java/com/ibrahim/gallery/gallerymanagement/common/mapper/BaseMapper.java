@@ -2,7 +2,7 @@ package com.ibrahim.gallery.gallerymanagement.common.mapper;
 
 import java.util.List;
 
-public interface BaseMapper <Entity, DTO>{
+public interface BaseMapper <Entity, DTO> {
 
     Entity toEntity(DTO dto);
 

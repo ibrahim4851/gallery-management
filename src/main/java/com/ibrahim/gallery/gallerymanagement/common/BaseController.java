@@ -4,7 +4,6 @@ import com.ibrahim.gallery.gallerymanagement.common.entity.BaseEntity;
 import com.ibrahim.gallery.gallerymanagement.common.mapper.BaseMapper;
 import com.ibrahim.gallery.gallerymanagement.common.service.BaseService;
 import com.ibrahim.gallery.gallerymanagement.common.util.BaseDTOUtil;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Component
-public abstract class BaseController<Entity extends BaseEntity, DTO, Service extends BaseService<Entity, ID>, Mapper extends BaseMapper<Entity, ID>, ID> {
+public abstract class BaseController<Entity extends BaseEntity, DTO, Service extends BaseService<Entity, ID>, Mapper extends BaseMapper<Entity, DTO>, ID> {
 
     protected abstract Service getService();
 
@@ -25,7 +24,7 @@ public abstract class BaseController<Entity extends BaseEntity, DTO, Service ext
         return responseDTO;
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping("/{id}")
     public DTO put(@PathVariable("id") ID id, @RequestBody @Validated DTO dto) {
 
         Entity existEntity = getService().get(id);
@@ -46,7 +45,7 @@ public abstract class BaseController<Entity extends BaseEntity, DTO, Service ext
         return dto;
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping("/{id}")
     public Boolean delete(@PathVariable("id") ID id) {
         getService().delete(id);
         return Boolean.TRUE;
@@ -58,5 +57,4 @@ public abstract class BaseController<Entity extends BaseEntity, DTO, Service ext
         List<DTO> dtos = getMapper().toListDTO(entities);
         return dtos;
     }
-
 }

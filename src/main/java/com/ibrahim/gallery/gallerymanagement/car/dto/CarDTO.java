@@ -1,15 +1,21 @@
 package com.ibrahim.gallery.gallerymanagement.car.dto;
 
-import java.util.Date;
+import com.ibrahim.gallery.gallerymanagement.common.dto.BaseDTO;
 
-public class CarDTO {
+public class CarDTO extends BaseDTO {
 
-    private Date createdAt;
+    private Long id;
 
-    private String createdByUserId;
+    private String brand;
 
-    private Date lastModifiedAt;
+    private String carModel;
 
-    private String lastModifiedByUserId;
+    private int price;
+
+    private Long kilometers;
+
+    private String color;
+
+
 
 }
