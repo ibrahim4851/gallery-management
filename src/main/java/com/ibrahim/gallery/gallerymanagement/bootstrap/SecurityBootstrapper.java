@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.Set;
+import java.util.UUID;
 
 @Component
 @AllArgsConstructor
@@ -34,6 +35,12 @@ public class SecurityBootstrapper {
         authorityAppRead.setPermission("app:read");
         authorityAppDelete.setPermission("app:delete");
 
+        // Assign UUIDs to the authorities
+        authorityAppCreate.setId(UUID.randomUUID().toString());
+        authorityAppUpdate.setId(UUID.randomUUID().toString());
+        authorityAppRead.setId(UUID.randomUUID().toString());
+        authorityAppDelete.setId(UUID.randomUUID().toString());
+
         authorityAppCreate = authorityService.save(authorityAppCreate);
         authorityAppUpdate = authorityService.save(authorityAppUpdate);
         authorityAppRead = authorityService.save(authorityAppRead);
@@ -48,34 +55,36 @@ public class SecurityBootstrapper {
         Role customerRole = new Role();
         customerRole.setAuthorities(Set.of(authorityAppRead));
 
+        // Assign UUIDs to the roles
+        adminRole.setId(UUID.randomUUID().toString());
+        systemManagerRole.setId(UUID.randomUUID().toString());
+        customerRole.setId(UUID.randomUUID().toString());
+
         adminRole = roleService.save(adminRole);
         systemManagerRole = roleService.save(systemManagerRole);
         customerRole = roleService.save(customerRole);
 
         User admin = new User();
         //admin.setUsername("admin");
-        admin.setEmail("admin@email.com");
+        admin.setEmail("admin@example.com");
         admin.setPassword(passwordEncoder.encode("123"));
         admin.setRoles(Set.of(adminRole));
         //admin.setEnabled(true);
 
         User systemManager = new User();
         //systemManager.setUsername("sm");
-        systemManager.setEmail("sm@email.com");
+        systemManager.setEmail("sm@example.com");
         systemManager.setPassword(passwordEncoder.encode("123"));
         systemManager.setRoles(Set.of(systemManagerRole));
 
         User customer = new User();
         //systemManager.setUsername("customer");
-        customer.setEmail("customer@email.com");
+        customer.setEmail("customer@example.com");
         customer.setPassword(passwordEncoder.encode("123"));
         customer.setRoles(Set.of(customerRole));
 
         userService.save(admin);
         userService.save(systemManager);
         userService.save(customer);
-
-
     }
-
 }

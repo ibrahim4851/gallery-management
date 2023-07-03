@@ -17,7 +17,7 @@ public class UserService extends BaseService<User, Long> {
 
     @Override
     public BaseRepository getRepository() {
-        return null;
+        return userRepository;
     }
 
     public Optional<User> findByEmailWithRelations(String username) {

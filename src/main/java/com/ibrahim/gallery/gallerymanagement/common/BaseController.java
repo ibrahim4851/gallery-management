@@ -1,5 +1,6 @@
 package com.ibrahim.gallery.gallerymanagement.common;
 
+import com.ibrahim.gallery.gallerymanagement.common.dto.BaseDTO;
 import com.ibrahim.gallery.gallerymanagement.common.entity.BaseEntity;
 import com.ibrahim.gallery.gallerymanagement.common.mapper.BaseMapper;
 import com.ibrahim.gallery.gallerymanagement.common.service.BaseService;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Component
-public abstract class BaseController<Entity extends BaseEntity, DTO, Service extends BaseService<Entity, ID>, Mapper extends BaseMapper<Entity, DTO>, ID> {
+public abstract class BaseController<Entity extends BaseEntity, DTO extends BaseDTO, Service extends BaseService<Entity, ID>, Mapper extends BaseMapper<Entity, DTO>, ID> {
 
     protected abstract Service getService();
 
