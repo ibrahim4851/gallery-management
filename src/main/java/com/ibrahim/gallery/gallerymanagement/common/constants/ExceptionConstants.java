@@ -7,4 +7,6 @@ public class ExceptionConstants {
     public static final String USER_NOT_FOUND = "User Not Found";
 
     public static final String UNAUTHORIZED = "Unauthorized";
+
+    public static final String FORBIDDEN_MESSAGE = "Forbidden";
 }

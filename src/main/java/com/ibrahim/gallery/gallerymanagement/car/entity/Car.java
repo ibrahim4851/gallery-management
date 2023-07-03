@@ -1,7 +1,7 @@
 package com.ibrahim.gallery.gallerymanagement.car.entity;
 
 import com.ibrahim.gallery.gallerymanagement.common.entity.BaseEntity;
-import com.ibrahim.gallery.gallerymanagement.security.entity.User;
+import com.ibrahim.gallery.gallerymanagement.user.entity.User;
 import lombok.Getter;
 import lombok.Setter;
 

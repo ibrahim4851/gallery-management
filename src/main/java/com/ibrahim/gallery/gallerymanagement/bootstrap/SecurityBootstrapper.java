@@ -1,11 +1,11 @@
 package com.ibrahim.gallery.gallerymanagement.bootstrap;
 
-import com.ibrahim.gallery.gallerymanagement.security.entity.Authority;
-import com.ibrahim.gallery.gallerymanagement.security.entity.Role;
-import com.ibrahim.gallery.gallerymanagement.security.entity.User;
-import com.ibrahim.gallery.gallerymanagement.security.service.AuthorityService;
-import com.ibrahim.gallery.gallerymanagement.security.service.RoleService;
-import com.ibrahim.gallery.gallerymanagement.security.service.UserService;
+import com.ibrahim.gallery.gallerymanagement.authority.entity.Authority;
+import com.ibrahim.gallery.gallerymanagement.authority.service.AuthorityService;
+import com.ibrahim.gallery.gallerymanagement.role.entity.Role;
+import com.ibrahim.gallery.gallerymanagement.role.service.RoleService;
+import com.ibrahim.gallery.gallerymanagement.user.entity.User;
+import com.ibrahim.gallery.gallerymanagement.user.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -53,19 +53,20 @@ public class SecurityBootstrapper {
         customerRole = roleService.save(customerRole);
 
         User admin = new User();
-        admin.setUsername("admin");
+        //admin.setUsername("admin");
         admin.setEmail("admin@email.com");
         admin.setPassword(passwordEncoder.encode("123"));
         admin.setRoles(Set.of(adminRole));
+        //admin.setEnabled(true);
 
         User systemManager = new User();
-        systemManager.setUsername("sm");
+        //systemManager.setUsername("sm");
         systemManager.setEmail("sm@email.com");
         systemManager.setPassword(passwordEncoder.encode("123"));
         systemManager.setRoles(Set.of(systemManagerRole));
 
         User customer = new User();
-        systemManager.setUsername("customer");
+        //systemManager.setUsername("customer");
         customer.setEmail("customer@email.com");
         customer.setPassword(passwordEncoder.encode("123"));
         customer.setRoles(Set.of(customerRole));

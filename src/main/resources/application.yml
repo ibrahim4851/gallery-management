@@ -13,4 +13,4 @@ spring:
         format_sql: true
   security:
     jwt:
-      secret: ibrahimGalleryApp
+      secret: "ibrahimGalleryApp"
