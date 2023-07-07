@@ -10,5 +10,5 @@ public class ExceptionConstants {
 
     public static final String FORBIDDEN_MESSAGE = "Forbidden";
     public static final String NOT_VALID_MAIL = "Email is not valid";
-    public static final String USER_ALREADY_EXIST = "A user with this email already exists";
+    public static final String USER_ALREADY_EXIST = "User with this email already exist";
 }

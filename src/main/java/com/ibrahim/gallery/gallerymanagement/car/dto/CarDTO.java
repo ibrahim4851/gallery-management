@@ -12,19 +12,19 @@ public class CarDTO extends BaseDTO {
 
     private Long id;
 
-    @NotNull(message = "Brand can't be null")
+    @NotNull(message = "brand can't be null")
     private String brand;
 
-    @NotNull(message = "Model can't be null")
+    @NotNull(message = "model can't be null")
     private String carModel;
 
-    @NotNull(message = "Price can't be null")
+    @NotNull(message = "price can't be null")
     private int price;
 
-    @NotNull(message = "Kilometers can't be null")
+    @NotNull(message = "kilometer can't be null")
     private Long kilometers;
 
-    @NotNull(message = "Color can't be null")
+    @NotNull(message = "color can't be null")
     private String color;
 
 }
