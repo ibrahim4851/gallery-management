@@ -37,6 +37,7 @@ public class UserController extends BaseController<User, UserDTO, UserService, U
     @Override
     @PostMapping("/register")
     public UserDTO save(@RequestBody @Valid UserDTO userDTO) {
-        return super.save(userDTO);
+        User user = userDTOMapper.toEntity(userDTO);
+        return userDTOMapper.toDTO(userService.register(user));
     }
 }

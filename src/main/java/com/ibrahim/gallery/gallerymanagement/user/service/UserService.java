@@ -3,8 +3,8 @@ package com.ibrahim.gallery.gallerymanagement.user.service;
 import com.ibrahim.gallery.gallerymanagement.common.constants.ExceptionConstants;
 import com.ibrahim.gallery.gallerymanagement.common.repo.BaseRepository;
 import com.ibrahim.gallery.gallerymanagement.common.service.BaseService;
+import com.ibrahim.gallery.gallerymanagement.common.validator.EmailValidator;
 import com.ibrahim.gallery.gallerymanagement.security.config.PasswordEncoderConfiguration;
-import com.ibrahim.gallery.gallerymanagement.security.service.EmailValidator;
 import com.ibrahim.gallery.gallerymanagement.user.entity.User;
 import com.ibrahim.gallery.gallerymanagement.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +29,7 @@ public class UserService extends BaseService<User, Long> {
         return userRepository.findByEmailWithRelations(username);
     }
 
-    @Override
-    public User save(User user) {
+    public User register(User user){
 
         boolean isValidEmail = emailValidator.
                 test(user.getEmail());
@@ -51,4 +50,5 @@ public class UserService extends BaseService<User, Long> {
 
         return userRepository.save(user);
     }
+
 }
