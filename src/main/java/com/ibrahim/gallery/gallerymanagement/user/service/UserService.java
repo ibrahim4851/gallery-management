@@ -1,7 +1,10 @@
 package com.ibrahim.gallery.gallerymanagement.user.service;
 
+import com.ibrahim.gallery.gallerymanagement.common.constants.ExceptionConstants;
 import com.ibrahim.gallery.gallerymanagement.common.repo.BaseRepository;
 import com.ibrahim.gallery.gallerymanagement.common.service.BaseService;
+import com.ibrahim.gallery.gallerymanagement.security.config.PasswordEncoderConfiguration;
+import com.ibrahim.gallery.gallerymanagement.security.service.EmailValidator;
 import com.ibrahim.gallery.gallerymanagement.user.entity.User;
 import com.ibrahim.gallery.gallerymanagement.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +17,8 @@ import java.util.Optional;
 public class UserService extends BaseService<User, Long> {
 
     private final UserRepository userRepository;
+    private final EmailValidator emailValidator;
+    private final PasswordEncoderConfiguration passwordEncoderConfiguration;
 
     @Override
     public BaseRepository getRepository() {
@@ -24,5 +29,26 @@ public class UserService extends BaseService<User, Long> {
         return userRepository.findByEmailWithRelations(username);
     }
 
+    @Override
+    public User save(User user) {
 
+        boolean isValidEmail = emailValidator.
+                test(user.getEmail());
+
+        if (!isValidEmail) {
+            throw new IllegalStateException(ExceptionConstants.NOT_VALID_MAIL);
+        }
+
+        boolean userExists = userRepository
+                .findByEmail(user.getEmail())
+                .isPresent();
+
+        if (userExists) {
+            throw new IllegalStateException(ExceptionConstants.USER_ALREADY_EXIST);
+        }
+
+        user.setPassword(passwordEncoderConfiguration.passwordEncoder().encode(user.getPassword()));
+
+        return userRepository.save(user);
+    }
 }

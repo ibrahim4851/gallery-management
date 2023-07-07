@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.Set;
-import java.util.UUID;
 
 @Component
 @AllArgsConstructor
@@ -36,10 +35,10 @@ public class SecurityBootstrapper {
         authorityAppDelete.setPermission("app:delete");
 
         // Assign UUIDs to the authorities
-        authorityAppCreate.setId(UUID.randomUUID().toString());
-        authorityAppUpdate.setId(UUID.randomUUID().toString());
-        authorityAppRead.setId(UUID.randomUUID().toString());
-        authorityAppDelete.setId(UUID.randomUUID().toString());
+        authorityAppCreate.setId("APP_CREATE");
+        authorityAppUpdate.setId("APP_UPDATE");
+        authorityAppRead.setId("APP_READ");
+        authorityAppDelete.setId("APP_DELETE");
 
         authorityAppCreate = authorityService.save(authorityAppCreate);
         authorityAppUpdate = authorityService.save(authorityAppUpdate);
@@ -47,18 +46,17 @@ public class SecurityBootstrapper {
         authorityAppDelete = authorityService.save(authorityAppDelete);
 
         Role adminRole = new Role();
+        adminRole.setId("ROLE_ADMIN");
         adminRole.setAuthorities(Set.of(authorityAppCreate, authorityAppUpdate, authorityAppRead, authorityAppDelete));
 
         Role systemManagerRole = new Role();
+        systemManagerRole.setId("ROLE_SM");
         systemManagerRole.setAuthorities(Set.of(authorityAppUpdate, authorityAppRead));
 
         Role customerRole = new Role();
+        customerRole.setId("ROLE_CUSTOMER");
         customerRole.setAuthorities(Set.of(authorityAppRead));
 
-        // Assign UUIDs to the roles
-        adminRole.setId(UUID.randomUUID().toString());
-        systemManagerRole.setId(UUID.randomUUID().toString());
-        customerRole.setId(UUID.randomUUID().toString());
 
         adminRole = roleService.save(adminRole);
         systemManagerRole = roleService.save(systemManagerRole);

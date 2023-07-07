@@ -1,5 +1,6 @@
 package com.ibrahim.gallery.gallerymanagement.security.config;
 
+import com.ibrahim.gallery.gallerymanagement.common.constants.GlobalConstants;
 import com.ibrahim.gallery.gallerymanagement.security.filter.JwtRequestFilter;
 import com.ibrahim.gallery.gallerymanagement.security.handler.CustomAccessDeniedHandler;
 import com.ibrahim.gallery.gallerymanagement.security.handler.CustomAuthenticationEntryPoint;
@@ -38,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/v1/authentication/login")
+                .antMatchers(GlobalConstants.EXCLUDE_URL)
                 .permitAll()
                 .and()
                 .authorizeRequests()

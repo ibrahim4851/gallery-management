@@ -14,4 +14,5 @@ public interface UserRepository extends BaseRepository<User, Long> {
             " WHERE u.email =:email")
     Optional<User> findByEmailWithRelations(String email);
 
+    Optional<User> findByEmail(String email);
 }

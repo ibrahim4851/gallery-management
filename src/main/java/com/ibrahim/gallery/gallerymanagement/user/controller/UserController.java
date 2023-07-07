@@ -1,4 +1,42 @@
 package com.ibrahim.gallery.gallerymanagement.user.controller;
 
-public class UserController {
+import com.ibrahim.gallery.gallerymanagement.common.BaseController;
+import com.ibrahim.gallery.gallerymanagement.user.dto.UserDTO;
+import com.ibrahim.gallery.gallerymanagement.user.entity.User;
+import com.ibrahim.gallery.gallerymanagement.user.mapper.UserDTOMapper;
+import com.ibrahim.gallery.gallerymanagement.user.service.UserService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+
+@RestController
+@RequestMapping("users")
+public class UserController extends BaseController<User, UserDTO, UserService, UserDTOMapper, Long> {
+
+    private final UserService userService;
+    private final UserDTOMapper userDTOMapper;
+
+    public UserController(UserService userService, UserDTOMapper userDTOMapper) {
+        this.userService = userService;
+        this.userDTOMapper = userDTOMapper;
+    }
+
+    @Override
+    protected UserService getService() {
+        return userService;
+    }
+
+    @Override
+    protected UserDTOMapper getMapper() {
+        return userDTOMapper;
+    }
+
+    @Override
+    @PostMapping("/register")
+    public UserDTO save(@RequestBody @Valid UserDTO userDTO) {
+        return super.save(userDTO);
+    }
 }
