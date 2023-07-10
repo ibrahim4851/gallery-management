@@ -1,10 +1,12 @@
-package com.ibrahim.gallery.gallerymanagement.common;
+package com.ibrahim.gallery.gallerymanagement.common.controller;
 
 import com.ibrahim.gallery.gallerymanagement.common.dto.BaseDTO;
 import com.ibrahim.gallery.gallerymanagement.common.entity.BaseEntity;
 import com.ibrahim.gallery.gallerymanagement.common.mapper.BaseMapper;
 import com.ibrahim.gallery.gallerymanagement.common.service.BaseService;
+import com.ibrahim.gallery.gallerymanagement.common.service.BaseServiceResult;
 import com.ibrahim.gallery.gallerymanagement.common.util.BaseDTOUtil;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -12,17 +14,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Component
-public abstract class BaseController<Entity extends BaseEntity, DTO extends BaseDTO, Service extends BaseService<Entity, ID>, Mapper extends BaseMapper<Entity, DTO>, ID> {
+public abstract class BaseController<Entity extends BaseEntity, DTO extends BaseDTO, Service extends BaseService<Entity, ID>, Mapper extends BaseMapper<Entity, DTO>, ID > extends BaseResponseCreator<DTO> {
 
     protected abstract Service getService();
 
     protected abstract Mapper getMapper();
 
     @PostMapping
-    public DTO save(@RequestBody @Validated DTO dto){
-        Entity entity = getService().save(getMapper().toEntity(dto));
-        DTO responseDTO = getMapper().toDTO(entity);
-        return responseDTO;
+    public ResponseEntity save(@RequestBody @Validated DTO dto){
+        BaseServiceResult<Entity> serviceResult = getService().save(getMapper().toEntity(dto));
+        DTO responseDTO = getMapper().toDTO(serviceResult.getResult());
+        return createResponse(responseDTO);
     }
 
     @PutMapping("/{id}")

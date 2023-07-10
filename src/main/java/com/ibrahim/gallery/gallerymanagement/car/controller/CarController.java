@@ -4,7 +4,7 @@ import com.ibrahim.gallery.gallerymanagement.car.dto.CarDTO;
 import com.ibrahim.gallery.gallerymanagement.car.entity.Car;
 import com.ibrahim.gallery.gallerymanagement.car.mapper.CarDtoMapper;
 import com.ibrahim.gallery.gallerymanagement.car.service.CarService;
-import com.ibrahim.gallery.gallerymanagement.common.BaseController;
+import com.ibrahim.gallery.gallerymanagement.common.controller.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

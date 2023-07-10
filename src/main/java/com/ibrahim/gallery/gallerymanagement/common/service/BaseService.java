@@ -10,11 +10,11 @@ import static com.ibrahim.gallery.gallerymanagement.common.constants.ExceptionCo
 
 public abstract class BaseService<Entity, ID> extends BaseServiceProxy<Entity, ID, BaseRepository<Entity, ID>> {
 
-    public Entity save(Entity entity){
+    public BaseServiceResult<Entity> save(Entity entity){
         savePreHandler(entity);
         Entity newEntity = getRepository().save(entity);
         saveAfterHandler(newEntity);
-        return newEntity;
+        return new BaseServiceResult<>(newEntity);
     }
 
     public Entity get(ID id) {
