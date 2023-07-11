@@ -22,7 +22,7 @@ public class CarDTO extends BaseDTO {
     private int price;
 
     @NotNull(message = "kilometer can't be null")
-    private Long kilometers;
+    private Long mileage;
 
     @NotNull(message = "color can't be null")
     private String color;

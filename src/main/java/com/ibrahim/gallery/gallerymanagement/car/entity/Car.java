@@ -1,5 +1,7 @@
 package com.ibrahim.gallery.gallerymanagement.car.entity;
 
+import com.ibrahim.gallery.gallerymanagement.carbrand.entity.CarBrand;
+import com.ibrahim.gallery.gallerymanagement.carseries.entity.CarSeries;
 import com.ibrahim.gallery.gallerymanagement.common.entity.BaseEntity;
 import com.ibrahim.gallery.gallerymanagement.user.entity.User;
 import lombok.Getter;
@@ -22,13 +24,17 @@ public class Car extends BaseEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String brand;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id")
+    private CarBrand brand;
 
-    private String carModel;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "series_id")
+    private CarSeries carSeries;
 
     private int price;
 
-    private Long kilometers;
+    private Long mileage;
 
     private String color;
 
