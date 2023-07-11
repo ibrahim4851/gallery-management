@@ -21,11 +21,11 @@ public abstract class BaseService<Entity, ID> extends BaseServiceProxy<Entity, I
         return getRepository().findById(id).orElseThrow(() -> new NoSuchElementException(ExceptionConstants.NOT_FOUND));
     }
 
-    public Entity put(Entity entity) {
+    public BaseServiceResult<Entity> put(Entity entity) {
         putPreHandler(entity);
         Entity save = getRepository().save(entity);
         putAfterHandler(save);
-        return save;
+        return new BaseServiceResult<>(save);
     }
 
     public void delete(ID id) {

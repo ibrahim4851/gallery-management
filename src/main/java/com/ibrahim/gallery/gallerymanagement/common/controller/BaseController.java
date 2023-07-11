@@ -28,24 +28,24 @@ public abstract class BaseController<Entity extends BaseEntity, DTO extends Base
     }
 
     @PutMapping("/{id}")
-    public DTO put(@PathVariable("id") ID id, @RequestBody @Validated DTO dto) {
+    public ResponseEntity put(@PathVariable("id") ID id, @RequestBody @Validated DTO dto) {
 
         Entity existEntity = getService().get(id);
         Entity newEntity = getMapper().toEntity(dto);
 
         BaseDTOUtil.setBaseEntityProperty(existEntity, newEntity);
 
-        Entity putServiceResult = getService().put(newEntity);
+        BaseServiceResult<Entity> putServiceResult = getService().put(newEntity);
 
-        DTO responseDTO = getMapper().toDTO(putServiceResult);
+        DTO responseDTO = getMapper().toDTO(putServiceResult.getResult());
 
-        return responseDTO;
+        return createResponse(responseDTO);
     }
 
     @GetMapping("/{id}")
-    public DTO get(@PathVariable ID id) {
+    public ResponseEntity get(@PathVariable ID id) {
         DTO dto = getMapper().toDTO(getService().get(id));
-        return dto;
+        return createResponse(dto);
     }
 
     @DeleteMapping("/{id}")
@@ -55,9 +55,9 @@ public abstract class BaseController<Entity extends BaseEntity, DTO extends Base
     }
 
     @GetMapping
-    public List<DTO> findAll() {
+    public ResponseEntity findAll() {
         List<Entity> entities = getService().findAll();
         List<DTO> dtos = getMapper().toListDTO(entities);
-        return dtos;
+        return createResponse(dtos);
     }
 }
