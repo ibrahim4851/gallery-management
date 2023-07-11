@@ -5,6 +5,8 @@ import com.ibrahim.gallery.gallerymanagement.car.entity.Car;
 import com.ibrahim.gallery.gallerymanagement.car.mapper.CarDtoMapper;
 import com.ibrahim.gallery.gallerymanagement.car.service.CarService;
 import com.ibrahim.gallery.gallerymanagement.common.controller.BaseController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +30,11 @@ public class CarController extends BaseController<Car, CarDTO, CarService, CarDt
     @Override
     protected CarDtoMapper getMapper() {
         return carDtoMapper;
+    }
+
+    @Override
+    @PreAuthorize("hasAuthority('app:create')")
+    public ResponseEntity save(CarDTO dto) {
+        return super.save(dto);
     }
 }

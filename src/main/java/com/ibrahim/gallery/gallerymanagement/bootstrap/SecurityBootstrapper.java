@@ -35,10 +35,10 @@ public class SecurityBootstrapper {
         authorityAppDelete.setPermission("app:delete");
 
         // Assign UUIDs to the authorities
-        authorityAppCreate.setId("APP_CREATE");
-        authorityAppUpdate.setId("APP_UPDATE");
-        authorityAppRead.setId("APP_READ");
-        authorityAppDelete.setId("APP_DELETE");
+        authorityAppCreate.setId("app:create");
+        authorityAppUpdate.setId("app:update");
+        authorityAppRead.setId("app:read");
+        authorityAppDelete.setId("app:delete");
 
         authorityAppCreate = authorityService.save(authorityAppCreate);
         authorityAppUpdate = authorityService.save(authorityAppUpdate);
