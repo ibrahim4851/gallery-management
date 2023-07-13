@@ -2,6 +2,7 @@ package com.ibrahim.gallery.gallerymanagement.common.controller;
 
 import com.ibrahim.gallery.gallerymanagement.common.service.BaseServiceResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Component
 public abstract class BaseResponseCreator<DTO> {
+
+    private final MessageSource messageSource;
 
     protected ResponseEntity createResponse(BaseServiceResult serviceResult) {
         return new ResponseEntity<>(serviceResult.getResult(), serviceResult.getHttpStatus());

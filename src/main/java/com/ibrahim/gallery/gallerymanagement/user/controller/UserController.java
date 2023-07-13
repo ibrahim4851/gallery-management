@@ -5,6 +5,7 @@ import com.ibrahim.gallery.gallerymanagement.user.dto.UserDTO;
 import com.ibrahim.gallery.gallerymanagement.user.entity.User;
 import com.ibrahim.gallery.gallerymanagement.user.mapper.UserDTOMapper;
 import com.ibrahim.gallery.gallerymanagement.user.service.UserService;
+import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,8 @@ public class UserController extends BaseController<User, UserDTO, UserService, U
     private final UserService userService;
     private final UserDTOMapper userDTOMapper;
 
-    public UserController(UserService userService, UserDTOMapper userDTOMapper) {
+    public UserController(MessageSource messageSource, UserService userService, UserDTOMapper userDTOMapper) {
+        super(messageSource);
         this.userService = userService;
         this.userDTOMapper = userDTOMapper;
     }

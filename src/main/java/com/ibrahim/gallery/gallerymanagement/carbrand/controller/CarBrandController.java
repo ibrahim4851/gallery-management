@@ -5,6 +5,7 @@ import com.ibrahim.gallery.gallerymanagement.carbrand.entity.CarBrand;
 import com.ibrahim.gallery.gallerymanagement.carbrand.mapper.CarBrandDTOMapper;
 import com.ibrahim.gallery.gallerymanagement.carbrand.service.CarBrandService;
 import com.ibrahim.gallery.gallerymanagement.common.controller.BaseController;
+import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,8 @@ public class CarBrandController extends BaseController<CarBrand, CarBrandDTO, Ca
     private final CarBrandService carBrandService;
     private final CarBrandDTOMapper carBrandDTOMapper;
 
-    public CarBrandController(CarBrandService carBrandService, CarBrandDTOMapper carBrandDTOMapper) {
+    public CarBrandController(MessageSource messageSource, CarBrandService carBrandService, CarBrandDTOMapper carBrandDTOMapper) {
+        super(messageSource);
         this.carBrandService = carBrandService;
         this.carBrandDTOMapper = carBrandDTOMapper;
     }

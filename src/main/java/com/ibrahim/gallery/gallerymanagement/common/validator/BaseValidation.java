@@ -1,6 +1,6 @@
 package com.ibrahim.gallery.gallerymanagement.common.validator;
 
-import com.ibrahim.gallery.gallerymanagement.common.entity.ResponseErrorMessage;
+import com.ibrahim.gallery.gallerymanagement.common.exception.ResponseErrorMessage;
 
 import java.util.List;
 

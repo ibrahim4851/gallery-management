@@ -5,6 +5,7 @@ import com.ibrahim.gallery.gallerymanagement.carseries.entity.CarSeries;
 import com.ibrahim.gallery.gallerymanagement.carseries.mapper.CarSeriesDTOMapper;
 import com.ibrahim.gallery.gallerymanagement.carseries.service.CarSeriesService;
 import com.ibrahim.gallery.gallerymanagement.common.controller.BaseController;
+import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,8 @@ public class CarSeriesController extends BaseController<CarSeries, CarSeriesDTO,
     private final CarSeriesService carSeriesService;
     private final CarSeriesDTOMapper carSeriesDTOMapper;
 
-    public CarSeriesController(CarSeriesService carSeriesService, CarSeriesDTOMapper carSeriesDTOMapper) {
+    public CarSeriesController(MessageSource messageSource, CarSeriesService carSeriesService, CarSeriesDTOMapper carSeriesDTOMapper) {
+        super(messageSource);
         this.carSeriesService = carSeriesService;
         this.carSeriesDTOMapper = carSeriesDTOMapper;
     }

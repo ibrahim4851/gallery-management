@@ -5,6 +5,7 @@ import com.ibrahim.gallery.gallerymanagement.car.entity.Car;
 import com.ibrahim.gallery.gallerymanagement.car.mapper.CarDtoMapper;
 import com.ibrahim.gallery.gallerymanagement.car.service.CarService;
 import com.ibrahim.gallery.gallerymanagement.common.controller.BaseController;
+import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,8 @@ public class CarController extends BaseController<Car, CarDTO, CarService, CarDt
     private final CarService carService;
     private final CarDtoMapper carDtoMapper;
 
-    public CarController(CarService carService, CarDtoMapper carDtoMapper) {
+    public CarController(MessageSource messageSource, CarService carService, CarDtoMapper carDtoMapper) {
+        super(messageSource);
         this.carService = carService;
         this.carDtoMapper = carDtoMapper;
     }

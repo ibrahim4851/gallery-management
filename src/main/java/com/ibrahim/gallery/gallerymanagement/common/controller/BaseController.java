@@ -6,6 +6,7 @@ import com.ibrahim.gallery.gallerymanagement.common.mapper.BaseMapper;
 import com.ibrahim.gallery.gallerymanagement.common.service.BaseService;
 import com.ibrahim.gallery.gallerymanagement.common.service.BaseServiceResult;
 import com.ibrahim.gallery.gallerymanagement.common.util.BaseDTOUtil;
+import org.springframework.context.MessageSource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
@@ -14,14 +15,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Component
-public abstract class BaseController<Entity extends BaseEntity, DTO extends BaseDTO, Service extends BaseService<Entity, ID>, Mapper extends BaseMapper<Entity, DTO>, ID > extends BaseResponseCreator<DTO> {
+public abstract class BaseController<Entity extends BaseEntity, DTO extends BaseDTO, Service extends BaseService<Entity, ID>, Mapper extends BaseMapper<Entity, DTO>, ID> extends BaseResponseCreator<DTO> {
 
     protected abstract Service getService();
 
     protected abstract Mapper getMapper();
 
+    public BaseController(MessageSource messageSource) {
+        super(messageSource);
+    }
+
     @PostMapping
-    public ResponseEntity save(@RequestBody @Validated DTO dto){
+    public ResponseEntity save(@RequestBody @Validated DTO dto) {
         BaseServiceResult<Entity> serviceResult = getService().save(getMapper().toEntity(dto));
         DTO responseDTO = getMapper().toDTO(serviceResult.getResult());
         return createResponse(responseDTO);

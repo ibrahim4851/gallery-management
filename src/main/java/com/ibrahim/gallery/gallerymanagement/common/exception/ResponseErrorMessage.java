@@ -1,4 +1,4 @@
-package com.ibrahim.gallery.gallerymanagement.common.entity;
+package com.ibrahim.gallery.gallerymanagement.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
