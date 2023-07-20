@@ -1,6 +1,7 @@
 package com.ibrahim.gallery.gallerymanagement.car.entity;
 
 import com.ibrahim.gallery.gallerymanagement.carbrand.entity.CarBrand;
+import com.ibrahim.gallery.gallerymanagement.carphoto.entity.Photo;
 import com.ibrahim.gallery.gallerymanagement.carseries.entity.CarSeries;
 import com.ibrahim.gallery.gallerymanagement.common.entity.BaseEntity;
 import com.ibrahim.gallery.gallerymanagement.user.entity.User;
@@ -9,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serial;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,6 +33,9 @@ public class Car extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "series_id")
     private CarSeries carSeries;
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Photo> photos;
 
     private int price;
 
