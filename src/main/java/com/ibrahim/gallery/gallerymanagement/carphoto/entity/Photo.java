@@ -27,4 +27,7 @@ public class Photo extends BaseEntity {
 
     private String photoUrl;
 
+    @Lob
+    private byte[] imageContent;
+
 }
