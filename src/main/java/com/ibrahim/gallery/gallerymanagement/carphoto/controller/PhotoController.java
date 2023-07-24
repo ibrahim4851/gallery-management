@@ -6,6 +6,7 @@ import com.ibrahim.gallery.gallerymanagement.carphoto.mapper.PhotoDtoMapper;
 import com.ibrahim.gallery.gallerymanagement.carphoto.service.PhotoService;
 import com.ibrahim.gallery.gallerymanagement.common.controller.BaseController;
 import org.springframework.context.MessageSource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,4 +34,10 @@ public class PhotoController extends BaseController<Photo, PhotoDTO, PhotoServic
     protected PhotoDtoMapper getMapper() {
         return photoDtoMapper;
     }
+
+    @Override
+    public ResponseEntity save(PhotoDTO dto) {
+        return super.save(dto);
+    }
+
 }
