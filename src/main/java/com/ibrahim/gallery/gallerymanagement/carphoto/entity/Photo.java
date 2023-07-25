@@ -1,4 +1,4 @@
-﻿package com.ibrahim.gallery.gallerymanagement.carphoto.entity;
+package com.ibrahim.gallery.gallerymanagement.carphoto.entity;
 
 import com.ibrahim.gallery.gallerymanagement.car.entity.Car;
 import com.ibrahim.gallery.gallerymanagement.common.entity.BaseEntity;
