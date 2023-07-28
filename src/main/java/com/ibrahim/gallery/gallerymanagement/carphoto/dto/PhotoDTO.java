@@ -1,4 +1,4 @@
-﻿package com.ibrahim.gallery.gallerymanagement.carphoto.dto;
+package com.ibrahim.gallery.gallerymanagement.carphoto.dto;
 
 import com.ibrahim.gallery.gallerymanagement.common.dto.BaseDTO;
 import com.ibrahim.gallery.gallerymanagement.common.dto.ItemDTO;
