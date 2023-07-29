@@ -1,4 +1,4 @@
-﻿package com.ibrahim.gallery.gallerymanagement.carphoto.service;
+package com.ibrahim.gallery.gallerymanagement.carphoto.service;
 
 import com.ibrahim.gallery.gallerymanagement.carphoto.entity.Photo;
 import com.ibrahim.gallery.gallerymanagement.carphoto.repository.PhotoRepository;
