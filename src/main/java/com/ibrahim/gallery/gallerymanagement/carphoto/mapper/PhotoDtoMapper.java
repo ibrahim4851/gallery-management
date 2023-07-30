@@ -1,4 +1,4 @@
-﻿package com.ibrahim.gallery.gallerymanagement.carphoto.mapper;
+package com.ibrahim.gallery.gallerymanagement.carphoto.mapper;
 
 import com.ibrahim.gallery.gallerymanagement.carphoto.dto.PhotoDTO;
 import com.ibrahim.gallery.gallerymanagement.carphoto.entity.Photo;
