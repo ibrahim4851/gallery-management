@@ -7,6 +7,9 @@ import com.ibrahim.gallery.gallerymanagement.common.service.BaseService;
 import com.ibrahim.gallery.gallerymanagement.common.service.BaseServiceResult;
 import com.ibrahim.gallery.gallerymanagement.common.util.BaseDTOUtil;
 import org.springframework.context.MessageSource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +33,18 @@ public abstract class BaseController<Entity extends BaseEntity, DTO extends Base
         BaseServiceResult<Entity> serviceResult = getService().save(getMapper().toEntity(dto));
         DTO responseDTO = getMapper().toDTO(serviceResult.getResult());
         return createResponse(responseDTO);
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<Page<Entity>> filter(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+        List<Entity> entities = getService().findAllWithPagination(pageable).getContent();
+        List<DTO> dtos = getMapper().toListDTO(entities);
+
+        return createResponse(dtos);
     }
 
     @PutMapping("/{id}")
