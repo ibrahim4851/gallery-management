@@ -2,6 +2,8 @@ package com.ibrahim.gallery.gallerymanagement.common.service;
 
 import com.ibrahim.gallery.gallerymanagement.common.constants.ExceptionConstants;
 import com.ibrahim.gallery.gallerymanagement.common.repo.BaseRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -10,7 +12,7 @@ import static com.ibrahim.gallery.gallerymanagement.common.constants.ExceptionCo
 
 public abstract class BaseService<Entity, ID> extends BaseServiceProxy<Entity, ID, BaseRepository<Entity, ID>> {
 
-    public BaseServiceResult<Entity> save(Entity entity){
+    public BaseServiceResult<Entity> save(Entity entity) {
         savePreHandler(entity);
         Entity newEntity = getRepository().save(entity);
         saveAfterHandler(newEntity);
@@ -54,6 +56,11 @@ public abstract class BaseService<Entity, ID> extends BaseServiceProxy<Entity, I
 
     public List<Entity> findAll() {
         List<Entity> entities = getRepository().findAll();
+        return entities;
+    }
+
+    public Page<Entity> findAllWithPagination(Pageable pageable) {
+        Page<Entity> entities = getRepository().findAll(pageable);
         return entities;
     }
 
