@@ -40,8 +40,10 @@ public class CarController extends BaseController<Car, CarDTO, CarService, CarDt
     }
 
     @PreAuthorize("hasAuthority('app:create')")
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity save(@RequestPart CarDTO dto, @RequestPart List<MultipartFile> carPhotos) {
         return super.save(dto);
     }
+
+
 }
