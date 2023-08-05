@@ -1,6 +1,6 @@
 package com.ibrahim.gallery.gallerymanagement.carphoto.entity;
 
-import com.ibrahim.gallery.gallerymanagement.car.entity.Car;
+import com.ibrahim.gallery.gallerymanagement.attachment.entity.Attachment;
 import com.ibrahim.gallery.gallerymanagement.common.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,11 +21,8 @@ public class Photo extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "car_id", nullable = false)
-    private Car car;
-
-    private String photoUrl;
+    @OneToOne
+    private Attachment attachmentId;
 
     @Lob
     private byte[] imageContent;

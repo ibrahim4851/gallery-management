@@ -1,7 +1,7 @@
 package com.ibrahim.gallery.gallerymanagement.car.entity;
 
+import com.ibrahim.gallery.gallerymanagement.attachment.entity.Attachment;
 import com.ibrahim.gallery.gallerymanagement.carbrand.entity.CarBrand;
-import com.ibrahim.gallery.gallerymanagement.carphoto.entity.Photo;
 import com.ibrahim.gallery.gallerymanagement.carseries.entity.CarSeries;
 import com.ibrahim.gallery.gallerymanagement.common.entity.BaseEntity;
 import com.ibrahim.gallery.gallerymanagement.user.entity.User;
@@ -34,8 +34,8 @@ public class Car extends BaseEntity {
     @JoinColumn(name = "series_id")
     private CarSeries carSeries;
 
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Photo> photos;
+    @OneToMany(mappedBy = "carId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Attachment> attachments;
 
     private int price;
 

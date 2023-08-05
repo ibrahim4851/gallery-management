@@ -1,5 +1,7 @@
 package com.ibrahim.gallery.gallerymanagement.attachment.entity;
 
+import com.ibrahim.gallery.gallerymanagement.car.entity.Car;
+import com.ibrahim.gallery.gallerymanagement.carphoto.entity.Photo;
 import com.ibrahim.gallery.gallerymanagement.common.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,5 +22,11 @@ public class Attachment extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @ManyToOne
+    private Car carId;
+
+    @OneToOne
+    private Photo photoId;
 
 }
